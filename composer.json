@@ -1,0 +1,20 @@
+{
+    "name": "root/wunderlist-php-client",
+    "authors": [
+        {
+            "name": "Tetiana Blindaruk",
+            "email": "t.blindaruk@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "jms/serializer": "^1.12",
+        "doctrine/annotations": "^1.6",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Makssiis\\WunderList\\": "src"
+        }
+    }
+}
