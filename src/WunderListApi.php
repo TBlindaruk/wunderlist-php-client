@@ -56,4 +56,9 @@ class WunderListApi
 
         return new AvatarImg($result->getBody()->getContents());
     }
+
+    public function getTaskFiles(int $taskId)
+    {
+        $result = $this->httpClient->get('files', ['task_id' => $taskId]);
+    }
 }
