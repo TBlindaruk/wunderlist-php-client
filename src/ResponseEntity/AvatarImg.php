@@ -1,11 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\Avatar\ResponseEntity;
+namespace Makssiis\WunderList\ResponseEntity;
 
 /**
  * Class AvatarImg
- * @package Makssiis\WunderList\Avatar\ResponceEntity
+ *
+ * @package Makssiis\WunderList\ResponseEntity
  */
 class AvatarImg
 {

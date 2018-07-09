@@ -1,20 +1,20 @@
 <?php
-
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\Avatar;
+namespace Makssiis\WunderList;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use JMS\Serializer\Serializer;
-use Makssiis\WunderList\Avatar\RequestEntity\Avatar;
-use Makssiis\WunderList\Avatar\ResponseEntity\AvatarImg;
+use Makssiis\WunderList\RequestEntity\Avatar;
+use Makssiis\WunderList\ResponseEntity\AvatarImg;
 
 /**
- * Class AvatarManager
- * @package Makssiis\WunderList\Avatar
+ * Class WunderListApi
+ *
+ * @package Makssiis\WunderList
  */
-class AvatarManager
+class WunderListApi
 {
     /**
      * @var Client
@@ -44,7 +44,7 @@ class AvatarManager
      * @return AvatarImg
      * @throws \Exception
      */
-    public function get(Avatar $entity): AvatarImg
+    public function getAvatar(Avatar $entity): AvatarImg
     {
         $urlParameter = $this->serializer->toArray($entity);
 
