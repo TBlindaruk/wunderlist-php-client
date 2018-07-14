@@ -10,14 +10,25 @@ namespace Makssiis\WunderList\ResponseEntity;
  */
 class Files
 {
+    /**
+     * @var array
+     */
     private $files;
 
+    /**
+     * Files constructor.
+     *
+     * @param array $files
+     */
     public function __construct(array $files)
     {
         $this->files = $files;
     }
 
-    public function getFiles()
+    /**
+     * @return array
+     */
+    public function getFiles(): array
     {
         return $this->files;
     }

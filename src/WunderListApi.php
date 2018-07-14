@@ -8,6 +8,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use JMS\Serializer\Serializer;
 use Makssiis\WunderList\RequestEntity\Avatar;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
+use Makssiis\WunderList\ResponseEntity\File;
+use Makssiis\WunderList\ResponseEntity\Files;
 
 /**
  * Class WunderListApi
@@ -57,8 +59,21 @@ class WunderListApi
         return new AvatarImg($result->getBody()->getContents());
     }
 
-    public function getTaskFiles(int $taskId)
+    /**
+     * @param int $taskId
+     *
+     * @return Files
+     */
+    public function getTaskFiles(int $taskId): Files
     {
-        $result = $this->httpClient->get('files', ['task_id' => $taskId]);
+        $result = $this->httpClient->get('files', ['query' => ['task_id' => $taskId]]);
+
+        $files = $this->serializer->deserialize(
+            $result->getBody()->getContents(),
+            'array<' . File::class . '>',
+            'json'
+        );
+
+        return new Files($files);
     }
 }
