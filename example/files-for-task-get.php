@@ -22,6 +22,9 @@ $wunderListApi = new \Makssiis\WunderList\WunderListApi(
         ->build()
 );
 
-var_dump($wunderListApi->getTaskFiles(4031412399));
+try {
+    var_dump($wunderListApi->getTaskFiles(4031412399));
+}catch (Throwable $throwable){
+}
 
 echo 'success';

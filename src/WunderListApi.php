@@ -6,6 +6,7 @@ namespace Makssiis\WunderList;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use JMS\Serializer\Serializer;
+use Makssiis\WunderList\Exception\WunderListHttpException;
 use Makssiis\WunderList\RequestEntity\Avatar;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
 use Makssiis\WunderList\ResponseEntity\File;
@@ -44,7 +45,8 @@ class WunderListApi
      * @param Avatar $entity
      *
      * @return AvatarImg
-     * @throws \Exception
+     *
+     * @throws WunderListHttpException
      */
     public function getAvatar(Avatar $entity): AvatarImg
     {
@@ -53,7 +55,7 @@ class WunderListApi
         try {
             $result = $this->httpClient->get('avatar', ['query' => $urlParameter]);
         } catch (GuzzleException $exception) {
-            throw $exception;
+            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return new AvatarImg($result->getBody()->getContents());
@@ -63,10 +65,16 @@ class WunderListApi
      * @param int $taskId
      *
      * @return Files
+     *
+     * @throws WunderListHttpException
      */
     public function getTaskFiles(int $taskId): Files
     {
-        $result = $this->httpClient->get('files', ['query' => ['task_id' => $taskId]]);
+        try {
+            $result = $this->httpClient->get('files', ['query' => ['task_id' => $taskId]]);
+        } catch (GuzzleException $exception) {
+            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
+        }
 
         $files = $this->serializer->deserialize(
             $result->getBody()->getContents(),
