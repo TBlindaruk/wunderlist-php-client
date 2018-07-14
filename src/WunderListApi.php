@@ -3,11 +3,9 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-use JMS\Serializer\Serializer;
-use Makssiis\WunderList\Exception\WunderListHttpException;
 use Makssiis\WunderList\RequestEntity\Avatar;
+use Makssiis\WunderList\RequestEntity\ListFiles;
+use Makssiis\WunderList\RequestEntity\TaskFiles;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
 use Makssiis\WunderList\ResponseEntity\File;
 use Makssiis\WunderList\ResponseEntity\Files;
@@ -20,92 +18,55 @@ use Makssiis\WunderList\ResponseEntity\Files;
 class WunderListApi
 {
     /**
-     * @var Client
+     * @var EntityManager
      */
-    private $httpClient;
+    private $entityManager;
 
     /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    /**
-     * AvatarManager constructor.
+     * WunderListApi constructor.
      *
-     * @param Client     $httpClient
-     * @param Serializer $serializer
+     * @param EntityManager $entityManager
      */
-    public function __construct(Client $httpClient, Serializer $serializer)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->httpClient = $httpClient;
-        $this->serializer = $serializer;
+        $this->entityManager = $entityManager;
     }
 
     /**
      * @param Avatar $entity
      *
      * @return AvatarImg
-     *
-     * @throws WunderListHttpException
+     * @throws \ReflectionException
      */
     public function getAvatar(Avatar $entity): AvatarImg
     {
-        $urlParameter = $this->serializer->toArray($entity);
-
-        try {
-            $result = $this->httpClient->get('avatar', ['query' => $urlParameter]);
-        } catch (GuzzleException $exception) {
-            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
-        }
-
-        return new AvatarImg($result->getBody()->getContents());
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return $this->entityManager->get($entity,AvatarImg::class,false);
     }
 
     /**
-     * @param int $taskId
+     * @param TaskFiles $taskFiles
      *
      * @return Files
-     *
-     * @throws WunderListHttpException
+     * @throws \ReflectionException
      */
-    public function getTaskFiles(int $taskId): Files
+    public function getTaskFiles(TaskFiles $taskFiles): Files
     {
-        try {
-            $result = $this->httpClient->get('files', ['query' => ['task_id' => $taskId]]);
-        } catch (GuzzleException $exception) {
-            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
-        }
+        $result = $this->entityManager->get($taskFiles,'array<' . File::class . '>');
 
-        $files = $this->serializer->deserialize(
-            $result->getBody()->getContents(),
-            'array<' . File::class . '>',
-            'json'
-        );
-
-        return new Files($files);
+        return new Files($result);
     }
 
     /**
-     * @param int $listId
+     * @param ListFiles $listFiles
      *
      * @return Files
-     *
-     * @throws WunderListHttpException
+     * @throws \ReflectionException
      */
-    public function getListFiles(int $listId): Files
+    public function getListFiles(ListFiles $listFiles): Files
     {
-        try {
-            $result = $this->httpClient->get('files', ['query' => ['list_id' => $listId]]);
-        } catch (GuzzleException $exception) {
-            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
-        }
+        $result = $this->entityManager->get($listFiles,'array<' . File::class . '>');
 
-        $files = $this->serializer->deserialize(
-            $result->getBody()->getContents(),
-            'array<' . File::class . '>',
-            'json'
-        );
-
-        return new Files($files);
+        return new Files($result);
     }
 }

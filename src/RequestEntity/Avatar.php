@@ -4,27 +4,33 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\RequestEntity;
 
+use Makssiis\WunderList\Annotation;
+
 /**
  * Class Avatar
- *
  * @package Makssiis\WunderList\RequestEntity
+ *
+ * @Annotation\RequestUri("avatar")
  */
 class Avatar
 {
     /**
      * @var int|null
+     * @Annotation\QueryParameter()
      */
-    protected $userId;
+    private $user_id;
 
     /**
      * @var string|int|null
+     * @Annotation\QueryParameter()
      */
-    protected $size;
+    private $size;
 
     /**
      * @var bool
+     * @Annotation\QueryParameter()
      */
-    protected $fallback = false;
+    private $fallback = false;
 
     /**
      * Avatar constructor.
@@ -33,7 +39,7 @@ class Avatar
      */
     public function __construct(int $userId)
     {
-        $this->userId = $userId;
+        $this->user_id = $userId;
     }
 
     /**
@@ -58,29 +64,5 @@ class Avatar
         $this->fallback = true;
 
         return $this;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getUserId(): ?int
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @return int|null|string
-     */
-    public function getSize()
-    {
-        return $this->size;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getFallback(): bool
-    {
-        return $this->fallback;
     }
 }

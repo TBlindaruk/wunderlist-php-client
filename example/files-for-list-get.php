@@ -4,27 +4,33 @@ require_once __DIR__ . '/../vendor/autoload.php';
 \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
 
 $wunderListApi = new \Makssiis\WunderList\WunderListApi(
-    new \GuzzleHttp\Client(
-        [
-            'base_uri' => 'https://a.wunderlist.com/api/v1/',
-            'headers' => [
-                'X-Access-Token' => '8338272ce8707263f7f438b9182b22a0f40204ac3cb2896cabb200515be5',
-                'X-Client-ID' => '631d76a77068d68b4c8f',
-            ],
-        ]
-    ),
-    JMS\Serializer\SerializerBuilder::create()
-        ->setPropertyNamingStrategy(
-            new \JMS\Serializer\Naming\SerializedNameAnnotationStrategy(
-                new \JMS\Serializer\Naming\CamelCaseNamingStrategy()
+    new \Makssiis\WunderList\EntityManager(
+        new \GuzzleHttp\Client(
+            [
+                'base_uri' => 'https://a.wunderlist.com/api/v1/',
+                'headers' => [
+                    'X-Access-Token' => 'a9f10a8cc521b5c1509b49a0ad31310a701640c195657d227576eaecc11c',
+                    'X-Client-ID' => '4c3d6ac35a6a4dfde5c3',
+                ],
+            ]
+        ),
+        JMS\Serializer\SerializerBuilder::create()
+            ->setPropertyNamingStrategy(
+                new \JMS\Serializer\Naming\SerializedNameAnnotationStrategy(
+                    new \JMS\Serializer\Naming\CamelCaseNamingStrategy()
+                )
             )
+            ->build(),
+        new \Makssiis\WunderList\Annotation\Resolver(
+            new \Doctrine\Common\Annotations\AnnotationReader()
         )
-        ->build()
+    )
 );
 
 try {
-    var_dump($wunderListApi->getListFiles(340148101));
-}catch (Throwable $throwable){
+    var_dump($wunderListApi->getListFiles(new \Makssiis\WunderList\RequestEntity\ListFiles(340148101)));
+} catch (Throwable $throwable) {
+    echo $throwable->getMessage();
 }
 
 echo 'success';
