@@ -84,4 +84,28 @@ class WunderListApi
 
         return new Files($files);
     }
+
+    /**
+     * @param int $listId
+     *
+     * @return Files
+     *
+     * @throws WunderListHttpException
+     */
+    public function getListFiles(int $listId): Files
+    {
+        try {
+            $result = $this->httpClient->get('files', ['query' => ['list_id' => $listId]]);
+        } catch (GuzzleException $exception) {
+            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
+        }
+
+        $files = $this->serializer->deserialize(
+            $result->getBody()->getContents(),
+            'array<' . File::class . '>',
+            'json'
+        );
+
+        return new Files($files);
+    }
 }
