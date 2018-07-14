@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\Avatar\RequestEntity;
+namespace Makssiis\WunderList\RequestEntity;
 
 /**
  * Class Avatar
  *
- * @package Makssiis\WunderList\Avatar\RequestEntity
+ * @package Makssiis\WunderList\RequestEntity
  */
 class Avatar
 {
