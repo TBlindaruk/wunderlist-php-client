@@ -9,8 +9,8 @@ $wunderListApi = new \Makssiis\WunderList\WunderListApi(
             [
                 'base_uri' => 'https://a.wunderlist.com/api/v1/',
                 'headers' => [
-                    'X-Access-Token' => '693743f568afc7f237f8b3ddffb491fae6f535e09788d02d374ff75d3e9e',
-                    'X-Client-ID' => '1c0db5a06a93d32190fb',
+                    'X-Access-Token' => 'a9f10a8cc521b5c1509b49a0ad31310a701640c195657d227576eaecc11c',
+                    'X-Client-ID' => '4c3d6ac35a6a4dfde5c3',
                 ],
             ]
         ),
@@ -28,7 +28,7 @@ $wunderListApi = new \Makssiis\WunderList\WunderListApi(
 );
 
 try {
-    var_dump($wunderListApi->getListFiles(new \Makssiis\WunderList\RequestEntity\ListFiles(340148101)));
+    var_dump($wunderListApi->getListFiles(new \Makssiis\WunderList\RequestEntity\ListFiles(44968264)));
 } catch (Throwable $throwable) {
     echo $throwable->getMessage();
 }
