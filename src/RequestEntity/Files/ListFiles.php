@@ -1,13 +1,13 @@
 <?php
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\RequestEntity;
+namespace Makssiis\WunderList\RequestEntity\Files;
 
 use Makssiis\WunderList\Annotation;
 
 /**
  * Class TaskFiles
- * @package Makssiis\WunderList\RequestEntity
+ * @package Makssiis\WunderList\RequestEntity\Files
  * @Annotation\RequestUri("files")
  */
 class ListFiles
