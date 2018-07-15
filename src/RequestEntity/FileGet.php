@@ -8,7 +8,7 @@ use Makssiis\WunderList\Annotation;
 /**
  * Class FileGet
  * @package Makssiis\WunderList\RequestEntity
- * @Annotation\RequestUri("file/{id}")
+ * @Annotation\RequestUri("files/{id}")
  */
 class FileGet
 {
