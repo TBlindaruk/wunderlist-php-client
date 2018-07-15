@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Makssiis\WunderList;
 
 use Makssiis\WunderList\RequestEntity\Avatar;
+use Makssiis\WunderList\RequestEntity\FileGet;
 use Makssiis\WunderList\RequestEntity\ListFiles;
 use Makssiis\WunderList\RequestEntity\TaskFiles;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
@@ -35,13 +36,12 @@ class WunderListApi
     /**
      * @param Avatar $entity
      *
-     * @return AvatarImg
+     * @return array|\JMS\Serializer\scalar|object|AvatarImg
      * @throws \ReflectionException
      */
-    public function getAvatar(Avatar $entity): AvatarImg
+    public function getAvatar(Avatar $entity)
     {
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return $this->entityManager->get($entity,AvatarImg::class,false);
+        return $this->entityManager->get($entity, AvatarImg::class, false);
     }
 
     /**
@@ -52,7 +52,7 @@ class WunderListApi
      */
     public function getTaskFiles(TaskFiles $taskFiles): Files
     {
-        $result = $this->entityManager->get($taskFiles,'array<' . File::class . '>');
+        $result = $this->entityManager->get($taskFiles, 'array<' . File::class . '>');
 
         return new Files($result);
     }
@@ -65,8 +65,19 @@ class WunderListApi
      */
     public function getListFiles(ListFiles $listFiles): Files
     {
-        $result = $this->entityManager->get($listFiles,'array<' . File::class . '>');
+        $result = $this->entityManager->get($listFiles, 'array<' . File::class . '>');
 
         return new Files($result);
+    }
+
+    /**
+     * @param FileGet $fileGet
+     *
+     * @return array|\JMS\Serializer\scalar|object|File
+     * @throws \ReflectionException
+     */
+    public function getFile(FileGet $fileGet)
+    {
+        return $this->entityManager->get($fileGet, File::class);
     }
 }

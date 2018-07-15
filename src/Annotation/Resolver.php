@@ -27,19 +27,33 @@ class Resolver
     }
 
     /**
-     * @param string|object $type
+     * @param string|object $object
      *
      * @return null|string
      * @throws \ReflectionException
      */
-    public function getUri($type): ?string
+    public function getUri($object): ?string
     {
-        $class = $this->getReflectionClass($type);
+        $class = $this->getReflectionClass($object);
 
         /** @var RequestUri|null $annotationClass */
         $annotationClass = $this->reader->getClassAnnotation($class, RequestUri::class);
 
-        return null === $annotationClass ? null : $annotationClass->getUri();
+        if(null === $annotationClass){
+            return null;
+        }
+
+        $uriPattern = $annotationClass->getUri();
+
+        foreach ($class->getProperties() as $property) {
+            if ($annotation = $this->reader->getPropertyAnnotation($property, UriParameter::class)) {
+                $property->setAccessible(true);
+
+                $uriPattern = str_replace(sprintf('{%s}', $property->getName()), $property->getValue(), $uriPattern);
+            }
+        }
+
+        return $uriPattern;
     }
 
     /**
