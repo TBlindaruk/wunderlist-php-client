@@ -7,7 +7,6 @@ use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class File
- *
  * @package Makssiis\WunderList\ResponseEntity
  */
 class File

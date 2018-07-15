@@ -8,6 +8,7 @@ use Makssiis\WunderList\RequestEntity\Files\FileDestroy;
 use Makssiis\WunderList\RequestEntity\Files\FileGet;
 use Makssiis\WunderList\RequestEntity\Files\ListFiles;
 use Makssiis\WunderList\RequestEntity\Files\TaskFiles;
+use Makssiis\WunderList\RequestEntity\Preview;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
 use Makssiis\WunderList\ResponseEntity\File;
 use Makssiis\WunderList\ResponseEntity\Files;
@@ -91,5 +92,16 @@ class WunderListApi
     public function destroyFile(FileDestroy $entity): bool
     {
         return $this->entityManager->destroy($entity);
+    }
+
+    /**
+     * @param Preview $entity
+     *
+     * @return array|\JMS\Serializer\scalar|object|ResponseEntity\Preview
+     * @throws \ReflectionException
+     */
+    public function getPreview(Preview $entity)
+    {
+        return $this->entityManager->get($entity, ResponseEntity\Preview::class);
     }
 }
