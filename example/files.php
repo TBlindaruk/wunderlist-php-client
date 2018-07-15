@@ -25,4 +25,11 @@ try {
     echo $throwable->getMessage();
 }
 
+// 3. Get specific file
+try {
+    var_dump($wunderListApi->destroyFile(new \Makssiis\WunderList\RequestEntity\Files\FileDestroy(44968264,1)));
+} catch (Throwable $throwable) {
+    echo $throwable->getMessage();
+}
+
 echo 'success';

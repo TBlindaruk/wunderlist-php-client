@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Makssiis\WunderList;
 
 use Makssiis\WunderList\RequestEntity\Avatar;
+use Makssiis\WunderList\RequestEntity\Files\FileDestroy;
 use Makssiis\WunderList\RequestEntity\Files\FileGet;
 use Makssiis\WunderList\RequestEntity\Files\ListFiles;
 use Makssiis\WunderList\RequestEntity\Files\TaskFiles;
@@ -79,5 +80,16 @@ class WunderListApi
     public function getFile(FileGet $fileGet)
     {
         return $this->entityManager->get($fileGet, File::class);
+    }
+
+    /**
+     * @param FileDestroy $entity
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public function destroyFile(FileDestroy $entity): bool
+    {
+        return $this->entityManager->destroy($entity);
     }
 }

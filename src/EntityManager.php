@@ -79,4 +79,34 @@ class EntityManager
 
         return new $responseEntity($result->getBody()->getContents());
     }
+
+    /**
+     * @param $requestEntity
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public function destroy($requestEntity): bool
+    {
+        $uri = $this->resolver->getUri($requestEntity);
+
+        if (null === $uri) {
+            throw new \LogicException('"requestEntity" should have the RequestUri annotation');
+        }
+
+        $guzzleOptions = [];
+
+        $queryParameters = $this->resolver->getQueryParameters($requestEntity);
+        if (!empty($queryParameters)) {
+            $guzzleOptions['query'] = $queryParameters;
+        }
+
+        try {
+            $result = $this->httpClient->delete($uri, $guzzleOptions);
+        } catch (GuzzleException $exception) {
+            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
+        }
+
+        return $result->getStatusCode() === 204;
+    }
 }
