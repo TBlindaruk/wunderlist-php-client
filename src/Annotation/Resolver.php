@@ -49,7 +49,11 @@ class Resolver
             if ($annotation = $this->reader->getPropertyAnnotation($property, UriParameter::class)) {
                 $property->setAccessible(true);
 
-                $uriPattern = str_replace(sprintf('{%s}', $property->getName()), $property->getValue(), $uriPattern);
+                $uriPattern = str_replace(
+                    sprintf('{%s}', $property->getName()),
+                    $property->getValue($object),
+                    $uriPattern
+                );
             }
         }
 
@@ -87,8 +91,8 @@ class Resolver
      */
     protected function getReflectionClass($object): \ReflectionClass
     {
-        if (!\is_string($object) && !\is_object($object)) {
-            throw new \InvalidArgumentException('"type" should be string or object');
+        if (!\is_object($object)) {
+            throw new \InvalidArgumentException('"object" should be object');
         }
 
         return new \ReflectionClass($object);

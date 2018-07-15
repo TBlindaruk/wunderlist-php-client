@@ -54,7 +54,7 @@ class EntityManager
      */
     public function get($requestEntity, string $responseEntity, bool $deserialize = true)
     {
-        $uri = $this->resolver->getUri(\get_class($requestEntity));
+        $uri = $this->resolver->getUri($requestEntity);
 
         if (null === $uri) {
             throw new \LogicException('"requestEntity" should have the RequestUri annotation');

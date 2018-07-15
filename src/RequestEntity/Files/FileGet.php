@@ -1,14 +1,14 @@
 <?php
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\RequestEntity;
+namespace Makssiis\WunderList\RequestEntity\Files;
 
 use Makssiis\WunderList\Annotation;
 
 /**
  * Class FileGet
- * @package Makssiis\WunderList\RequestEntity
- * @Annotation\RequestUri("file/{id}")
+ * @package Makssiis\WunderList\RequestEntity\Files
+ * @Annotation\RequestUri("files/{id}")
  */
 class FileGet
 {
