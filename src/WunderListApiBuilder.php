@@ -38,8 +38,8 @@ class WunderListApiBuilder
                 [
                     'base_uri' => 'https://a.wunderlist.com/api/v1/',
                     'headers' => [
-                        'X-Access-Token' => '693743f568afc7f237f8b3ddffb491fae6f535e09788d02d374ff75d3e9e',
-                        'X-Client-ID' => '1c0db5a06a93d32190fb',
+                        'X-Access-Token' => 'cbc35a405f4b6a7d2d978bd672cfb4eb2c0dcd3789b4dac8ad7740616981',
+                        'X-Client-ID' => '7cfcc24b9a666516e5ce',
                     ],
                 ]
             ),
