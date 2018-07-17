@@ -3,8 +3,6 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\ResponseEntity;
 
-use JMS\Serializer\Annotation as Serializer;
-
 /**
  * Class Preview
  * @package Makssiis\WunderList\ResponseEntity
@@ -13,25 +11,21 @@ class Preview
 {
     /**
      * @var string
-     * @Serializer\Type("string")
      */
     private $url;
 
     /**
      * @var string
-     * @Serializer\Type("string")
      */
     private $size;
 
     /**
      * @var string
-     * @Serializer\Type("string")
      */
-    private $expiresAt;
+    private $expires_at;
 
     /**
      * @var string
-     * @Serializer\Type("string")
      */
     private $type;
 
@@ -56,7 +50,7 @@ class Preview
      */
     public function getExpiresAt(): string
     {
-        return $this->expiresAt;
+        return $this->expires_at;
     }
 
     /**

@@ -5,9 +5,9 @@ namespace Makssiis\WunderList;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use JMS\Serializer\SerializerInterface;
 use Makssiis\WunderList\Annotation\Resolver;
 use Makssiis\WunderList\Exception\WunderListHttpException;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class EntityManager
@@ -49,7 +49,8 @@ class EntityManager
      * @param string $responseEntity
      * @param bool   $deserialize
      *
-     * @return array|\JMS\Serializer\scalar|object
+     * @return object|[]
+     *
      * @throws \ReflectionException
      */
     public function get($requestEntity, string $responseEntity, bool $deserialize = true)

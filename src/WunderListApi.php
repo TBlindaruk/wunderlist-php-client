@@ -8,10 +8,12 @@ use Makssiis\WunderList\RequestEntity\Files\FileDestroy;
 use Makssiis\WunderList\RequestEntity\Files\FileGet;
 use Makssiis\WunderList\RequestEntity\Files\ListFiles;
 use Makssiis\WunderList\RequestEntity\Files\TaskFiles;
+use Makssiis\WunderList\RequestEntity\Folders\GetList as GetFolders;
 use Makssiis\WunderList\RequestEntity\Preview;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
 use Makssiis\WunderList\ResponseEntity\File;
 use Makssiis\WunderList\ResponseEntity\Files;
+use Makssiis\WunderList\ResponseEntity\Folder;
 
 /**
  * Class WunderListApi
@@ -38,7 +40,7 @@ class WunderListApi
     /**
      * @param Avatar $entity
      *
-     * @return array|\JMS\Serializer\scalar|object|AvatarImg
+     * @return object
      * @throws \ReflectionException
      */
     public function getAvatar(Avatar $entity)
@@ -54,7 +56,8 @@ class WunderListApi
      */
     public function getTaskFiles(TaskFiles $taskFiles): Files
     {
-        $result = $this->entityManager->get($taskFiles, 'array<' . File::class . '>');
+        /** @var array $result */
+        $result = $this->entityManager->get($taskFiles,  File::class . '[]');
 
         return new Files($result);
     }
@@ -67,7 +70,8 @@ class WunderListApi
      */
     public function getListFiles(ListFiles $listFiles): Files
     {
-        $result = $this->entityManager->get($listFiles, 'array<' . File::class . '>');
+        /** @var array $result */
+        $result = $this->entityManager->get($listFiles, File::class . '[]');
 
         return new Files($result);
     }
@@ -75,7 +79,7 @@ class WunderListApi
     /**
      * @param FileGet $fileGet
      *
-     * @return array|\JMS\Serializer\scalar|object|File
+     * @return object
      * @throws \ReflectionException
      */
     public function getFile(FileGet $fileGet)
@@ -97,11 +101,20 @@ class WunderListApi
     /**
      * @param Preview $entity
      *
-     * @return array|\JMS\Serializer\scalar|object|ResponseEntity\Preview
+     * @return object
      * @throws \ReflectionException
      */
     public function getPreview(Preview $entity)
     {
         return $this->entityManager->get($entity, ResponseEntity\Preview::class);
+    }
+
+    /**
+     * @return object|array
+     * @throws \ReflectionException
+     */
+    public function getFolders()
+    {
+        return $this->entityManager->get(new GetFolders(), Folder::class . '[]');
     }
 }
