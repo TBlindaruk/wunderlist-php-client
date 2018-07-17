@@ -8,10 +8,12 @@ use Makssiis\WunderList\RequestEntity\Files\FileDestroy;
 use Makssiis\WunderList\RequestEntity\Files\FileGet;
 use Makssiis\WunderList\RequestEntity\Files\ListFiles;
 use Makssiis\WunderList\RequestEntity\Files\TaskFiles;
+use Makssiis\WunderList\RequestEntity\Folders\GetList as GetFolders;
 use Makssiis\WunderList\RequestEntity\Preview;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
 use Makssiis\WunderList\ResponseEntity\File;
 use Makssiis\WunderList\ResponseEntity\Files;
+use Makssiis\WunderList\ResponseEntity\Folder;
 
 /**
  * Class WunderListApi
@@ -105,5 +107,14 @@ class WunderListApi
     public function getPreview(Preview $entity)
     {
         return $this->entityManager->get($entity, ResponseEntity\Preview::class);
+    }
+
+    /**
+     * @return object|array
+     * @throws \ReflectionException
+     */
+    public function getFolders()
+    {
+        return $this->entityManager->get(new GetFolders(), Folder::class . '[]');
     }
 }
