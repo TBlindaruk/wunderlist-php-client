@@ -3,8 +3,6 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\ResponseEntity;
 
-use JMS\Serializer\Annotation as Serializer;
-
 /**
  * Class File
  * @package Makssiis\WunderList\ResponseEntity
@@ -13,92 +11,66 @@ class File
 {
     /**
      * @var int
-     *
-     * @Serializer\Type("integer")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @Serializer\Type("string")
      */
     private $url;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("integer")
+     * @var int|null
      */
-    private $taskId;
+    private $task_id;
+
+    /**
+     * @var int|null
+     */
+    private $list_id;
 
     /**
      * @var int
-     *
-     * @Serializer\Type("integer")
      */
-    private $listId;
+    private $user_id;
+
+    /**
+     * @var string
+     */
+    private $file_name;
+
+    /**
+     * @var string
+     */
+    private $content_type;
 
     /**
      * @var int
-     *
-     * @Serializer\Type("integer")
      */
-    private $userId;
+    private $file_size;
 
     /**
      * @var string
-     *
-     * @Serializer\Type("string")
      */
-    private $fileName;
+    private $local_created_at;
 
     /**
      * @var string
-     *
-     * @Serializer\Type("string")
      */
-    private $contentType;
-
-    /**
-     * @var int
-     *
-     * @Serializer\Type("integer")
-     */
-    private $fileSize;
+    private $created_at;
 
     /**
      * @var string
-     *
-     * @Serializer\Type("string")
      */
-    private $localCreatedAt;
+    private $updated_at;
 
     /**
      * @var string
-     *
-     * @Serializer\Type("string")
-     */
-    private $createdAt;
-
-    /**
-     * @var string
-     *
-     * @Serializer\Type("string")
-     */
-    private $updatedAt;
-
-    /**
-     * @var string
-     *
-     * @Serializer\Type("string")
      */
     private $type;
 
     /**
      * @var int
-     *
-     * @Serializer\Type("integer")
      */
     private $revision;
 
@@ -123,7 +95,7 @@ class File
      */
     public function getTaskId(): ?int
     {
-        return $this->taskId;
+        return $this->task_id;
     }
 
     /**
@@ -131,7 +103,7 @@ class File
      */
     public function getListId(): ?int
     {
-        return $this->listId;
+        return $this->list_id;
     }
 
     /**
@@ -139,7 +111,7 @@ class File
      */
     public function getUserId(): int
     {
-        return $this->userId;
+        return $this->user_id;
     }
 
     /**
@@ -147,7 +119,7 @@ class File
      */
     public function getFileName(): string
     {
-        return $this->fileName;
+        return $this->file_name;
     }
 
     /**
@@ -155,7 +127,7 @@ class File
      */
     public function getContentType(): string
     {
-        return $this->contentType;
+        return $this->content_type;
     }
 
     /**
@@ -163,7 +135,7 @@ class File
      */
     public function getFileSize(): int
     {
-        return $this->fileSize;
+        return $this->file_size;
     }
 
     /**
@@ -171,7 +143,7 @@ class File
      */
     public function getLocalCreatedAt(): string
     {
-        return $this->localCreatedAt;
+        return $this->local_created_at;
     }
 
     /**
@@ -179,7 +151,7 @@ class File
      */
     public function getCreatedAt(): string
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
     /**
@@ -187,7 +159,7 @@ class File
      */
     public function getUpdatedAt(): string
     {
-        return $this->updatedAt;
+        return $this->updated_at;
     }
 
     /**

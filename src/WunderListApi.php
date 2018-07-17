@@ -38,7 +38,7 @@ class WunderListApi
     /**
      * @param Avatar $entity
      *
-     * @return array|\JMS\Serializer\scalar|object|AvatarImg
+     * @return object
      * @throws \ReflectionException
      */
     public function getAvatar(Avatar $entity)
@@ -54,7 +54,8 @@ class WunderListApi
      */
     public function getTaskFiles(TaskFiles $taskFiles): Files
     {
-        $result = $this->entityManager->get($taskFiles, 'array<' . File::class . '>');
+        /** @var array $result */
+        $result = $this->entityManager->get($taskFiles,  File::class . '[]');
 
         return new Files($result);
     }
@@ -67,7 +68,8 @@ class WunderListApi
      */
     public function getListFiles(ListFiles $listFiles): Files
     {
-        $result = $this->entityManager->get($listFiles, 'array<' . File::class . '>');
+        /** @var array $result */
+        $result = $this->entityManager->get($listFiles, File::class . '[]');
 
         return new Files($result);
     }
@@ -75,7 +77,7 @@ class WunderListApi
     /**
      * @param FileGet $fileGet
      *
-     * @return array|\JMS\Serializer\scalar|object|File
+     * @return object
      * @throws \ReflectionException
      */
     public function getFile(FileGet $fileGet)
@@ -97,7 +99,7 @@ class WunderListApi
     /**
      * @param Preview $entity
      *
-     * @return array|\JMS\Serializer\scalar|object|ResponseEntity\Preview
+     * @return object
      * @throws \ReflectionException
      */
     public function getPreview(Preview $entity)

@@ -20,12 +20,12 @@ try {
 
 // 3. Get specific file
 try {
-    var_dump($wunderListApi->getFile(new \Makssiis\WunderList\RequestEntity\Files\FileGet(44968264)));
+    var_dump($wunderListApi->getFile(new \Makssiis\WunderList\RequestEntity\Files\FileGet(44959175)));
 } catch (Throwable $throwable) {
     echo $throwable->getMessage();
 }
 
-// 3. Get specific file
+// 4. Destroy specific file
 try {
     var_dump($wunderListApi->destroyFile(new \Makssiis\WunderList\RequestEntity\Files\FileDestroy(44968264,1)));
 } catch (Throwable $throwable) {
