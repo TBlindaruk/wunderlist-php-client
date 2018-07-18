@@ -9,6 +9,7 @@ use Makssiis\WunderList\RequestEntity\Files\FileGet;
 use Makssiis\WunderList\RequestEntity\Files\ListFiles;
 use Makssiis\WunderList\RequestEntity\Files\TaskFiles;
 use Makssiis\WunderList\RequestEntity\Folders\GetList as GetFolders;
+use Makssiis\WunderList\RequestEntity\Folders\GetOne as GetFolder;
 use Makssiis\WunderList\RequestEntity\Preview;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
 use Makssiis\WunderList\ResponseEntity\File;
@@ -57,7 +58,7 @@ class WunderListApi
     public function getTaskFiles(TaskFiles $taskFiles): Files
     {
         /** @var array $result */
-        $result = $this->entityManager->get($taskFiles,  File::class . '[]');
+        $result = $this->entityManager->get($taskFiles, File::class . '[]');
 
         return new Files($result);
     }
@@ -116,5 +117,16 @@ class WunderListApi
     public function getFolders()
     {
         return $this->entityManager->get(new GetFolders(), Folder::class . '[]');
+    }
+
+    /**
+     * @param GetFolder $entity
+     *
+     * @return object
+     * @throws \ReflectionException
+     */
+    public function getFolder(GetFolder $entity)
+    {
+        return $this->entityManager->get($entity, Folder::class);
     }
 }
