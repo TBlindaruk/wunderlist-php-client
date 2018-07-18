@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\RequestEntity\Files;
 
-use Makssiis\WunderList\Annotation;
+use Makssiis\WunderList\EntityManager\Annotation;
 
 /**
  * Class TaskFiles

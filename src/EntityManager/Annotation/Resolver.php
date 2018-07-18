@@ -1,13 +1,13 @@
 <?php
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\Annotation;
+namespace Makssiis\WunderList\EntityManager\Annotation;
 
 use Doctrine\Common\Annotations\Reader;
 
 /**
  * Class Resolver
- * @package Makssiis\WunderList\Annotation
+ * @package Makssiis\WunderList\EntityManager\Annotation
  */
 class Resolver
 {

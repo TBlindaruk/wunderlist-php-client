@@ -5,8 +5,8 @@ namespace Makssiis\WunderList;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Makssiis\WunderList\Annotation\Resolver;
-use Makssiis\WunderList\Exception\WunderListHttpException;
+use Makssiis\WunderList\EntityManager\Annotation\Resolver;
+use Makssiis\WunderList\EntityManager\Exception\WunderListHttpException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**

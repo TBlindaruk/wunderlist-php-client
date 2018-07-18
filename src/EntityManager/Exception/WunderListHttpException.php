@@ -1,13 +1,13 @@
 <?php
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\Exception;
+namespace Makssiis\WunderList\EntityManager\Exception;
 
 use RuntimeException;
 
 /**
- * Class WunderListHttpExcpetion
- * @package Makssiis\WunderList\Exception
+ * Class WunderListHttpException
+ * @package Makssiis\WunderList\EntityManager\Exception
  */
 class WunderListHttpException extends RuntimeException implements WunderlistHttpExceptionInterface
 {

@@ -1,12 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\Annotation;
+namespace Makssiis\WunderList\EntityManager\Annotation;
 
 /**
  * Class RequestUri
- * @package Makssiis\WunderList\Annotation
- *
+ * @package Makssiis\WunderList\EntityManager\Annotation
  * @Annotation
  */
 class RequestUri

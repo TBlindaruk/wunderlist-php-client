@@ -1,11 +1,11 @@
 <?php
 declare(strict_types = 1);
 
-namespace Makssiis\WunderList\Exception;
+namespace Makssiis\WunderList\EntityManager\Exception;
 
 /**
  * Interface WunderlistHttpExceptionInterface
- * @package Makssiis\WunderList\Exception
+ * @package Makssiis\WunderList\EntityManager\Exception
  */
 interface WunderlistHttpExceptionInterface
 {

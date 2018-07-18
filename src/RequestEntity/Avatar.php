@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\RequestEntity;
 
-use Makssiis\WunderList\Annotation;
+use Makssiis\WunderList\EntityManager\Annotation;
 
 /**
  * Class Avatar

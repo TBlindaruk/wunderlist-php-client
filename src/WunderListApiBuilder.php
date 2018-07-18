@@ -6,7 +6,7 @@ namespace Makssiis\WunderList;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\Client;
-use Makssiis\WunderList\Annotation\Resolver;
+use Makssiis\WunderList\EntityManager\Annotation\Resolver;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
