@@ -18,9 +18,12 @@ try {
     echo $throwable->getMessage();
 }
 
-// 3. Create a folder
 try {
-    var_dump($wunderListApi->folder()->create('First Try', [1, 2]));
+    // 3. Create a folder and update
+    $value = $wunderListApi->folder()->create('First Try', [1, 2]);
+
+    // 4. Update a folder
+    $wunderListApi->folder()->update($value->getId(), $value->getRevision(), 'REnamed');
 } catch (\Throwable $throwable) {
     echo $throwable->getMessage();
 }

@@ -222,4 +222,61 @@ class RequestEntityCreator
             }
         };
     }
+
+    /**
+     * @param int         $folderId
+     * @param int         $revision
+     * @param string|null $title
+     * @param array|null  $listIds
+     *
+     * @return object
+     */
+    public function updateFolder(int $folderId, int $revision, string $title = null, array $listIds = null)
+    {
+        /**
+         * @Annotation\RequestUri("folders/{folder_id}")
+         */
+        return new class($folderId, $revision, $title, $listIds)
+        {
+            /**
+             * @var int
+             * @Annotation\UriParameter()
+             */
+            private $folder_id;
+
+            /**
+             * @var int
+             * @Annotation\QueryParameter()
+             */
+            private $revision;
+
+            /**
+             * @var string
+             * @Annotation\QueryParameter()
+             */
+            private $title;
+
+            /**
+             * @var array
+             * @Annotation\QueryParameter()
+             */
+            private $list_ids;
+
+            /**
+             *  constructor.
+             *
+             * @param int         $folderId
+             * @param int         $revision
+             * @param string|null $title
+             * @param array|null  $listIds
+             */
+            public function __construct(int $folderId, int $revision, string $title = null, array $listIds = null)
+            {
+                $this->folder_id = $folderId;
+                $this->revision = $revision;
+                $this->title = $title;
+                $this->list_ids = $listIds;
+            }
+        };
+    }
 }

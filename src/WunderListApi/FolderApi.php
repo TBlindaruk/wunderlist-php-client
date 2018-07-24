@@ -12,7 +12,7 @@ use Makssiis\WunderList\ResponseEntity\Folder;
 class FolderApi extends AbstractWunderlistApi
 {
     /**
-     * @return object|array
+     * @return object|array|Folder[]
      * @throws \ReflectionException
      */
     public function getList()
@@ -25,7 +25,7 @@ class FolderApi extends AbstractWunderlistApi
     /**
      * @param int $id
      *
-     * @return object
+     * @return object|Folder
      * @throws \ReflectionException
      */
     public function get(int $id)
@@ -39,7 +39,7 @@ class FolderApi extends AbstractWunderlistApi
      * @param string $title
      * @param array  $listIds
      *
-     * @return object
+     * @return object|Folder
      * @throws \ReflectionException
      */
     public function create(string $title, array $listIds)
@@ -47,5 +47,21 @@ class FolderApi extends AbstractWunderlistApi
         $entity = $this->getRequestEntityCreator()->createFolder($title, $listIds);
 
         return $this->getEntityManager()->create($entity, Folder::class);
+    }
+
+    /**
+     * @param int         $folderId
+     * @param int         $revision
+     * @param string|null $title
+     * @param array|null  $listIds
+     *
+     * @return object
+     * @throws \ReflectionException
+     */
+    public function update(int $folderId, int $revision, string $title = null, array $listIds = null)
+    {
+        $entity = $this->getRequestEntityCreator()->updateFolder($folderId, $revision, $title, $listIds);
+
+        return $this->getEntityManager()->update($entity, Folder::class);
     }
 }
