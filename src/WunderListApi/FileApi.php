@@ -20,7 +20,7 @@ class FileApi extends AbstractWunderlistApi
      */
     public function getTaskFiles(int $taskId): Files
     {
-        $entity = $this->getRequestEntityCreator()->getTaskFiles($taskId);
+        $entity = $this->getRequestEntityCreator()->file()->getTaskFiles($taskId);
         /** @var array $result */
         $result = $this->getEntityManager()->get($entity, File::class . '[]');
 
@@ -35,7 +35,7 @@ class FileApi extends AbstractWunderlistApi
      */
     public function getListFiles(int $listId): Files
     {
-        $entity = $this->getRequestEntityCreator()->getListFiles($listId);
+        $entity = $this->getRequestEntityCreator()->file()->getListFiles($listId);
         /** @var array $result */
         $result = $this->getEntityManager()->get($entity, File::class . '[]');
 
@@ -50,7 +50,7 @@ class FileApi extends AbstractWunderlistApi
      */
     public function get(int $fileId)
     {
-        $entity = $this->getRequestEntityCreator()->getFile($fileId);
+        $entity = $this->getRequestEntityCreator()->file()->get($fileId);
 
         return $this->getEntityManager()->get($entity, File::class);
     }
@@ -64,7 +64,7 @@ class FileApi extends AbstractWunderlistApi
      */
     public function destroy(int $id, int $revision): bool
     {
-        $entity = $this->getRequestEntityCreator()->destroyFile($id, $revision);
+        $entity = $this->getRequestEntityCreator()->file()->destroy($id, $revision);
 
         return $this->getEntityManager()->destroy($entity);
     }
