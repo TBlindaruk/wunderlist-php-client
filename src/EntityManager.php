@@ -110,4 +110,40 @@ class EntityManager
 
         return $result->getStatusCode() === 204;
     }
+
+    /**
+     * @param object $requestEntity
+     * @param string $responseEntity
+     * @param bool   $deserialize
+     *
+     * @return object
+     * @throws \ReflectionException
+     */
+    public function create($requestEntity, string $responseEntity, bool $deserialize = true)
+    {
+        $uri = $this->resolver->getUri($requestEntity);
+
+        if (null === $uri) {
+            throw new \LogicException('"requestEntity" should have the RequestUri annotation');
+        }
+
+        $guzzleOptions = [];
+
+        $queryParameters = $this->resolver->getQueryParameters($requestEntity);
+        if (!empty($queryParameters)) {
+            $guzzleOptions['json'] = $queryParameters;
+        }
+
+        try {
+            $result = $this->httpClient->post($uri, $guzzleOptions);
+        } catch (GuzzleException $exception) {
+            throw new WunderListHttpException($exception->getMessage(), $exception->getCode(), $exception);
+        }
+
+        if (true === $deserialize) {
+            return $this->serializer->deserialize($result->getBody()->getContents(), $responseEntity, 'json');
+        }
+
+        return new $responseEntity($result->getBody()->getContents());
+    }
 }

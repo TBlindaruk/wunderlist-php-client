@@ -4,12 +4,6 @@ declare(strict_types = 1);
 namespace Makssiis\WunderList;
 
 use Makssiis\WunderList\RequestEntity\Avatar;
-use Makssiis\WunderList\RequestEntity\Files\FileDestroy;
-use Makssiis\WunderList\RequestEntity\Files\FileGet;
-use Makssiis\WunderList\RequestEntity\Files\ListFiles;
-use Makssiis\WunderList\RequestEntity\Files\TaskFiles;
-use Makssiis\WunderList\RequestEntity\Folders\GetList as GetFolders;
-use Makssiis\WunderList\RequestEntity\Folders\GetOne as GetFolder;
 use Makssiis\WunderList\RequestEntity\Preview;
 use Makssiis\WunderList\ResponseEntity\AvatarImg;
 use Makssiis\WunderList\ResponseEntity\File;
@@ -29,13 +23,20 @@ class WunderListApi
     private $entityManager;
 
     /**
+     * @var RequestEntityCreator
+     */
+    private $requestEntityCreator;
+
+    /**
      * WunderListApi constructor.
      *
-     * @param EntityManager $entityManager
+     * @param EntityManager        $entityManager
+     * @param RequestEntityCreator $requestEntityCreator
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, RequestEntityCreator $requestEntityCreator)
     {
         $this->entityManager = $entityManager;
+        $this->requestEntityCreator = $requestEntityCreator;
     }
 
     /**
@@ -50,52 +51,59 @@ class WunderListApi
     }
 
     /**
-     * @param TaskFiles $taskFiles
+     * @param int $taskId
      *
      * @return Files
      * @throws \ReflectionException
      */
-    public function getTaskFiles(TaskFiles $taskFiles): Files
+    public function getTaskFiles(int $taskId): Files
     {
+        $entity = $this->requestEntityCreator->getTaskFiles($taskId);
         /** @var array $result */
-        $result = $this->entityManager->get($taskFiles, File::class . '[]');
+        $result = $this->entityManager->get($entity, File::class . '[]');
 
         return new Files($result);
     }
 
     /**
-     * @param ListFiles $listFiles
+     * @param int $listId
      *
      * @return Files
      * @throws \ReflectionException
      */
-    public function getListFiles(ListFiles $listFiles): Files
+    public function getListFiles(int $listId): Files
     {
+        $entity = $this->requestEntityCreator->getListFiles($listId);
         /** @var array $result */
-        $result = $this->entityManager->get($listFiles, File::class . '[]');
+        $result = $this->entityManager->get($entity, File::class . '[]');
 
         return new Files($result);
     }
 
     /**
-     * @param FileGet $fileGet
+     * @param int $fileId
      *
      * @return object
      * @throws \ReflectionException
      */
-    public function getFile(FileGet $fileGet)
+    public function getFile(int $fileId)
     {
-        return $this->entityManager->get($fileGet, File::class);
+        $entity = $this->requestEntityCreator->getFile($fileId);
+
+        return $this->entityManager->get($entity, File::class);
     }
 
     /**
-     * @param FileDestroy $entity
+     * @param int $id
+     * @param int $revision
      *
      * @return bool
      * @throws \ReflectionException
      */
-    public function destroyFile(FileDestroy $entity): bool
+    public function destroyFile(int $id, int $revision): bool
     {
+        $entity = $this->requestEntityCreator->destroyFile($id, $revision);
+
         return $this->entityManager->destroy($entity);
     }
 
@@ -116,17 +124,35 @@ class WunderListApi
      */
     public function getFolders()
     {
-        return $this->entityManager->get(new GetFolders(), Folder::class . '[]');
+        $entity = $this->requestEntityCreator->getFolders();
+
+        return $this->entityManager->get($entity, Folder::class . '[]');
     }
 
     /**
-     * @param GetFolder $entity
+     * @param int $id
      *
      * @return object
      * @throws \ReflectionException
      */
-    public function getFolder(GetFolder $entity)
+    public function getFolder(int $id)
     {
+        $entity = $this->requestEntityCreator->getFolder($id);
+
         return $this->entityManager->get($entity, Folder::class);
+    }
+
+    /**
+     * @param string $title
+     * @param array  $listIds
+     *
+     * @return object
+     * @throws \ReflectionException
+     */
+    public function createFolder(string $title, array $listIds)
+    {
+        $entity = $this->requestEntityCreator->createFolder($title, $listIds);
+
+        return $this->entityManager->create($entity, Folder::class);
     }
 }

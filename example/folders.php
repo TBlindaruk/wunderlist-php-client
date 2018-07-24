@@ -13,8 +13,15 @@ try {
 
 // 2. Get a specific folder
 try {
-    var_dump($wunderListApi->getFolder(new \Makssiis\WunderList\RequestEntity\Folders\GetOne(9496358)));
+    var_dump($wunderListApi->getFolder(9496358));
 } catch (Throwable $throwable) {
+    echo $throwable->getMessage();
+}
+
+// 3. Create a folder
+try {
+    var_dump($wunderListApi->createFolder('First Try', [1, 2]));
+} catch (\Throwable $throwable) {
     echo $throwable->getMessage();
 }
 
