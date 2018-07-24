@@ -251,6 +251,7 @@ class RequestEntityCreator
             private $revision;
 
             /**
+             * FIXME: Max Length should be 255
              * @var string
              * @Annotation\QueryParameter()
              */
