@@ -141,4 +141,18 @@ class WunderListApi
 
         return $this->entityManager->get($entity, Folder::class);
     }
+
+    /**
+     * @param string $title
+     * @param array  $listIds
+     *
+     * @return object
+     * @throws \ReflectionException
+     */
+    public function createFolder(string $title, array $listIds)
+    {
+        $entity = $this->requestEntityCreator->createFolder($title, $listIds);
+
+        return $this->entityManager->create($entity, Folder::class);
+    }
 }

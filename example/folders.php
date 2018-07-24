@@ -18,4 +18,11 @@ try {
     echo $throwable->getMessage();
 }
 
+// 3. Create a folder
+try {
+    var_dump($wunderListApi->createFolder('First Try', [1, 2]));
+} catch (\Throwable $throwable) {
+    echo $throwable->getMessage();
+}
+
 echo 'success';

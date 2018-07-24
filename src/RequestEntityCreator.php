@@ -182,4 +182,43 @@ class RequestEntityCreator
             }
         };
     }
+
+    /**
+     * @param string $title
+     * @param array  $listIds
+     *
+     * @return object
+     */
+    public function createFolder(string $title, array $listIds)
+    {
+        /**
+         * @Annotation\RequestUri("folders")
+         */
+        return new class($title, $listIds)
+        {
+            /**
+             * @var string
+             * @Annotation\QueryParameter()
+             */
+            private $title;
+
+            /**
+             * @var array
+             * @Annotation\QueryParameter()
+             */
+            private $list_ids;
+
+            /**
+             *  constructor.
+             *
+             * @param string $title
+             * @param array  $listIds
+             */
+            public function __construct(string $title, array $listIds)
+            {
+                $this->title = $title;
+                $this->list_ids = $listIds;
+            }
+        };
+    }
 }
