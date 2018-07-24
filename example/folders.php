@@ -6,21 +6,21 @@ $wunderListApi = $wunderListApi = \Makssiis\WunderList\WunderListApiBuilder::cre
 
 // 1. Get folders
 try {
-    var_dump($wunderListApi->getFolders());
+    var_dump($wunderListApi->folder()->getList());
 } catch (Throwable $throwable) {
     echo $throwable->getMessage();
 }
 
 // 2. Get a specific folder
 try {
-    var_dump($wunderListApi->getFolder(9496358));
+    var_dump($wunderListApi->folder()->get(9496358));
 } catch (Throwable $throwable) {
     echo $throwable->getMessage();
 }
 
 // 3. Create a folder
 try {
-    var_dump($wunderListApi->createFolder('First Try', [1, 2]));
+    var_dump($wunderListApi->folder()->create('First Try', [1, 2]));
 } catch (\Throwable $throwable) {
     echo $throwable->getMessage();
 }

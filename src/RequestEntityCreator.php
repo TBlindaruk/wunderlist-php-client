@@ -198,6 +198,7 @@ class RequestEntityCreator
         {
             /**
              * @var string
+             * FIXME: Max Length should be 255
              * @Annotation\QueryParameter()
              */
             private $title;
