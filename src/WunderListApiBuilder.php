@@ -53,6 +53,6 @@ class WunderListApiBuilder
             )
         );
 
-        return new WunderListApi($entityManager);
+        return new WunderListApi($entityManager, new RequestEntityCreator());
     }
 }
