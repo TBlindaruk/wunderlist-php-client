@@ -7,7 +7,7 @@ $api = \Makssiis\WunderList\WunderListApiBuilder::create()->build();
 $avatarEntity = new \Makssiis\WunderList\RequestEntity\Avatar(0);
 $avatarEntity->setSize(123123123122);
 
-$response = $api->getAvatar($avatarEntity);
+$response = $api->avatar()->get($avatarEntity);
 echo $response->getBlob();
 
 echo 'success';

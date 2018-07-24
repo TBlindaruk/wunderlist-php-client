@@ -6,7 +6,7 @@ $wunderListApi = $wunderListApi = \Makssiis\WunderList\WunderListApiBuilder::cre
 
 // 1. Get files of list
 try {
-    var_dump($wunderListApi->getPreview(new \Makssiis\WunderList\RequestEntity\Preview(44959175,'web','retina')));
+    var_dump($wunderListApi->preview()->get(new \Makssiis\WunderList\RequestEntity\Preview(44959175,'web','retina')));
 } catch (Throwable $throwable) {
     echo $throwable->getMessage();
 }
