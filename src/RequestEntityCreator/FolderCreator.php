@@ -151,4 +151,43 @@ class FolderCreator
             }
         };
     }
+
+    /**
+     * @param int $folderId
+     * @param int $revision
+     *
+     * @return object
+     */
+    public function delete(int $folderId, int $revision)
+    {
+        /**
+         * @Annotation\RequestUri("folders/{folder_id}")
+         */
+        return new class($folderId, $revision)
+        {
+            /**
+             * @var int
+             * @Annotation\UriParameter()
+             */
+            private $folder_id;
+
+            /**
+             * @var int
+             * @Annotation\QueryParameter()
+             */
+            private $revision;
+
+            /**
+             *  constructor.
+             *
+             * @param int $folder_id
+             * @param int $revision
+             */
+            public function __construct(int $folder_id, int $revision)
+            {
+                $this->folder_id = $folder_id;
+                $this->revision = $revision;
+            }
+        };
+    }
 }

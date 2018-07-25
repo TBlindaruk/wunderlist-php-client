@@ -64,4 +64,18 @@ class FolderApi extends AbstractWunderlistApi
 
         return $this->getEntityManager()->update($entity, Folder::class);
     }
+
+    /**
+     * @param int $folderId
+     * @param int $revision
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public function delete(int $folderId, int $revision): bool
+    {
+        $entity = $this->getRequestEntityCreator()->folder()->delete($folderId, $revision);
+
+        return $this->getEntityManager()->destroy($entity);
+    }
 }
