@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\WunderListApi;
 
-use Makssiis\WunderList\RequestEntity\Preview;
+use Makssiis\WunderList\ResponseEntity\Preview;
 
 /**
  * Class PreviewApi
@@ -12,13 +12,17 @@ use Makssiis\WunderList\RequestEntity\Preview;
 class PreviewApi extends AbstractWunderlistApi
 {
     /**
-     * @param Preview $entity
+     * @param int         $fileId
+     * @param string|null $platform
+     * @param string|null $size
      *
      * @return object
      * @throws \ReflectionException
      */
-    public function get(Preview $entity)
+    public function get(int $fileId, string $platform = null, string $size = null)
     {
-        return $this->getEntityManager()->get($entity, \Makssiis\WunderList\ResponseEntity\Preview::class);
+        $entity = $this->getRequestEntityCreator()->preview()->get($fileId, $platform, $size);
+
+        return $this->getEntityManager()->get($entity, Preview::class);
     }
 }
