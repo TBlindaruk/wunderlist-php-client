@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Makssiis\WunderList\WunderListApi;
 
 use Makssiis\WunderList\ResponseEntity\Folder;
+use Makssiis\WunderList\ResponseEntity\FolderRevision;
 
 /**
  * Class FolderApi
@@ -77,5 +78,16 @@ class FolderApi extends AbstractWunderlistApi
         $entity = $this->getRequestEntityCreator()->folder()->delete($folderId, $revision);
 
         return $this->getEntityManager()->destroy($entity);
+    }
+
+    /**
+     * @return object|FolderRevision[]
+     * @throws \ReflectionException
+     */
+    public function getRevisions()
+    {
+        $entity = $this->getRequestEntityCreator()->folder()->getRevisions();
+
+        return $this->getEntityManager()->get($entity, FolderRevision::class . '[]');
     }
 }

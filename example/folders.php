@@ -31,4 +31,12 @@ try {
     echo $throwable->getMessage();
 }
 
+echo '------FOLDER-REVISIONS--------------';
+
+try {
+    var_dump($wunderListApi->folder()->getRevisions());
+} catch (\Throwable $throwable) {
+    echo $throwable->getMessage();
+}
+
 echo 'success';

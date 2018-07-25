@@ -190,4 +190,18 @@ class FolderCreator
             }
         };
     }
+
+    /**
+     * @return object
+     */
+    public function getRevisions()
+    {
+        /**
+         * @Annotation\RequestUri("folder_revisions")
+         */
+        return new class()
+        {
+
+        };
+    }
 }
