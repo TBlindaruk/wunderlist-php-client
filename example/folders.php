@@ -23,7 +23,10 @@ try {
     $value = $wunderListApi->folder()->create('First Try', [1, 2]);
 
     // 4. Update a folder
-    $wunderListApi->folder()->update($value->getId(), $value->getRevision(), 'REnamed');
+    $value2 = $wunderListApi->folder()->update($value->getId(), $value->getRevision(), 'REnamed');
+
+    echo $wunderListApi->folder()->delete($value2->getId(), $value2->getRevision());
+
 } catch (\Throwable $throwable) {
     echo $throwable->getMessage();
 }
