@@ -7,6 +7,7 @@ use Makssiis\WunderList\RequestEntityCreator\AvatarCreator;
 use Makssiis\WunderList\RequestEntityCreator\FileCreator;
 use Makssiis\WunderList\RequestEntityCreator\FolderCreator;
 use Makssiis\WunderList\RequestEntityCreator\ListCreator;
+use Makssiis\WunderList\RequestEntityCreator\NoteCreator;
 use Makssiis\WunderList\RequestEntityCreator\PreviewCreator;
 
 /**
@@ -53,5 +54,13 @@ class RequestEntityCreator
     public function list(): ListCreator
     {
         return new ListCreator();
+    }
+
+    /**
+     * @return NoteCreator
+     */
+    public function note(): NoteCreator
+    {
+        return new NoteCreator();
     }
 }
