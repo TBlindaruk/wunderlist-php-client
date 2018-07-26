@@ -74,8 +74,23 @@ class NoteApi extends AbstractWunderlistApi
      */
     public function update(int $noteId, int $revision, string $content)
     {
-        $entity = $this->getRequestEntityCreator()->note()->update($noteId,$revision,$content);
+        $entity = $this->getRequestEntityCreator()->note()->update($noteId, $revision, $content);
 
         return $this->getEntityManager()->update($entity, Note::class);
+    }
+
+
+    /**
+     * @param int $noteId
+     * @param int $revision
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public function delete(int $noteId, int $revision): bool
+    {
+        $entity = $this->getRequestEntityCreator()->note()->delete($noteId, $revision);
+
+        return $this->getEntityManager()->destroy($entity);
     }
 }

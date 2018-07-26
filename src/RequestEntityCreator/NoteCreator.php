@@ -187,4 +187,43 @@ class NoteCreator
             }
         };
     }
+
+    /**
+     * @param int $noteId
+     * @param int $revision
+     *
+     * @return object
+     */
+    public function delete(int $noteId, int $revision)
+    {
+        /**
+         * @Annotation\RequestUri("notes/{noteId}")
+         */
+        return new class($noteId, $revision)
+        {
+            /**
+             * @var int
+             * @Annotation\UriParameter()
+             */
+            private $noteId;
+
+            /**
+             * @var int
+             * @Annotation\QueryParameter()
+             */
+            private $revision;
+
+            /**
+             *  constructor.
+             *
+             * @param int $noteId
+             * @param int $revision
+             */
+            public function __construct(int $noteId, int $revision)
+            {
+                $this->noteId = $noteId;
+                $this->revision = $revision;
+            }
+        };
+    }
 }

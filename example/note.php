@@ -26,14 +26,18 @@ echo '----------------CREATE NOTE -------------------';
 
 try {
     var_dump($wunderListApi->note()->create(4000847920, 'asdasd'));
-}catch (\Throwable $throwable){
+} catch (\Throwable $throwable) {
     echo $throwable->getMessage();
 }
 
 echo '------------ UPDATE NOTE-----------------------';
 
 
-var_dump($wunderListApi->note()->update($notes[0]->getId(),$notes[0]->getRevision(),'asdasd'));
+var_dump($newNote = $wunderListApi->note()->update($notes[0]->getId(), $notes[0]->getRevision(), 'asdasd'));
+
+echo '------------------ DELETE NOTE -----------------';
+
+var_dump($wunderListApi->note()->delete($newNote->getId(), $newNote->getRevision()));
 
 echo 'success';
 
