@@ -3,8 +3,7 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\WunderListApi;
 
-use Makssiis\WunderList\RequestEntity\Avatar;
-use Makssiis\WunderList\ResponseEntity\AvatarImg;
+use Makssiis\WunderList\Entity\AvatarImg;
 
 /**
  * Class AvatarApi
@@ -12,14 +11,19 @@ use Makssiis\WunderList\ResponseEntity\AvatarImg;
  */
 class AvatarApi extends AbstractWunderlistApi
 {
+
     /**
-     * @param Avatar $entity
+     * @param int  $userId
+     * @param null $size
+     * @param bool $fallback
      *
-     * @return AvatarImg|object
+     * @return object|AvatarImg
      * @throws \ReflectionException
      */
-    public function get(Avatar $entity)
+    public function get(int $userId, $size = null, bool $fallback = false)
     {
+        $entity = $this->getRequestEntityCreator()->avatar()->get($userId, $size, $fallback);
+
         return $this->getEntityManager()->get($entity, AvatarImg::class, false);
     }
 }
