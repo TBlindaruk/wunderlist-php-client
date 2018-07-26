@@ -22,5 +22,9 @@ echo '----------------GET A SPECIFIC NOTE -------------------';
 
 var_dump($wunderListApi->note()->get($notes[0]->getId()));
 
+echo '----------------CREATE NOTE -------------------';
+
+var_dump($wunderListApi->note()->create(4000847920,'asdasd'));
+
 echo 'success';
 

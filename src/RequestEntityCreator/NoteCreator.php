@@ -100,4 +100,43 @@ class NoteCreator
             }
         };
     }
+
+    /**
+     * @param int    $taskId
+     * @param string $content
+     *
+     * @return object
+     */
+    public function create(int $taskId, string $content)
+    {
+        /**
+         * @Annotation\RequestUri("notes")
+         */
+        return new class($taskId, $content)
+        {
+            /**
+             * @var int
+             * @Annotation\QueryParameter()
+             */
+            private $task_id;
+
+            /**
+             * @var string
+             * @Annotation\QueryParameter()
+             */
+            private $content;
+
+            /**
+             *  constructor.
+             *
+             * @param int    $taskId
+             * @param string $content
+             */
+            public function __construct(int $taskId, string $content)
+            {
+                $this->task_id = $taskId;
+                $this->content = $content;
+            }
+        };
+    }
 }

@@ -35,7 +35,7 @@ class Note
     private $task_id;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $created_by_request_id;
 
@@ -120,9 +120,9 @@ class Note
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCreatedByRequestId(): string
+    public function getCreatedByRequestId(): ?string
     {
         return $this->created_by_request_id;
     }

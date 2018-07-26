@@ -49,4 +49,18 @@ class NoteApi extends AbstractWunderlistApi
 
         return $this->getEntityManager()->get($entity, Note::class);
     }
+
+    /**
+     * @param int    $taskId
+     * @param string $content
+     *
+     * @return object|Note
+     * @throws \ReflectionException
+     */
+    public function create(int $taskId, string $content)
+    {
+        $entity = $this->getRequestEntityCreator()->note()->create($taskId, $content);
+
+        return $this->getEntityManager()->create($entity, Note::class);
+    }
 }
