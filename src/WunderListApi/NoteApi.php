@@ -23,4 +23,17 @@ class NoteApi extends AbstractWunderlistApi
 
         return $this->getEntityManager()->get($entity, Note::class . '[]');
     }
+
+    /**
+     * @param int $listId
+     *
+     * @return object|Note[]
+     * @throws \ReflectionException
+     */
+    public function getAllForList(int $listId)
+    {
+        $entity = $this->getRequestEntityCreator()->note()->getAllForList($listId);
+
+        return $this->getEntityManager()->get($entity, Note::class . '[]');
+    }
 }

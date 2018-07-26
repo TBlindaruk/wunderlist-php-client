@@ -11,6 +11,11 @@ use Makssiis\WunderList\EntityManager\Annotation;
  */
 class NoteCreator
 {
+    /**
+     * @param int $taskId
+     *
+     * @return object
+     */
     public function getAllForTask(int $taskId)
     {
         /**
@@ -32,6 +37,36 @@ class NoteCreator
             public function __construct(int $taskId)
             {
                 $this->task_id = $taskId;
+            }
+        };
+    }
+
+    /**
+     * @param int $listId
+     *
+     * @return object
+     */
+    public function getAllForList(int $listId)
+    {
+        /**
+         * @Annotation\RequestUri("notes")
+         */
+        return new class($listId)
+        {
+            /**
+             * @var int
+             * @Annotation\QueryParameter()
+             */
+            private $list_id;
+
+            /**
+             *  constructor.
+             *
+             * @param int $listId
+             */
+            public function __construct(int $listId)
+            {
+                $this->list_id = $listId;
             }
         };
     }
