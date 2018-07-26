@@ -24,7 +24,16 @@ var_dump($wunderListApi->note()->get($notes[0]->getId()));
 
 echo '----------------CREATE NOTE -------------------';
 
-var_dump($wunderListApi->note()->create(4000847920,'asdasd'));
+try {
+    var_dump($wunderListApi->note()->create(4000847920, 'asdasd'));
+}catch (\Throwable $throwable){
+    echo $throwable->getMessage();
+}
+
+echo '------------ UPDATE NOTE-----------------------';
+
+
+var_dump($wunderListApi->note()->update($notes[0]->getId(),$notes[0]->getRevision(),'asdasd'));
 
 echo 'success';
 
