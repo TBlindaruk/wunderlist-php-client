@@ -15,4 +15,9 @@ try {
 echo '---------------GET A SPECIFIC LIST -------------------';
 
 var_dump($wunderListApi->list()->get($lists[0]->getId()));
+
+
+echo '----------------CREATE A LIST ------------------------';
+
+var_dump($wunderListApi->list()->create('FIRST TRY'));
 echo 'success';

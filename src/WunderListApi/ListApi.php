@@ -34,4 +34,17 @@ class ListApi extends AbstractWunderlistApi
 
         return $this->getEntityManager()->get($entity, ListEntity::class);
     }
+
+    /**
+     * @param string $title
+     *
+     * @return object|ListEntity
+     * @throws \ReflectionException
+     */
+    public function create(string $title)
+    {
+        $entity = $this->getRequestEntityCreator()->list()->create($title);
+
+        return $this->getEntityManager()->create($entity, ListEntity::class);
+    }
 }

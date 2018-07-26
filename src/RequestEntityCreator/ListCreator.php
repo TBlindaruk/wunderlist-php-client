@@ -53,4 +53,34 @@ class ListCreator
             }
         };
     }
+
+    /**
+     * @param string $title
+     *
+     * @return object
+     */
+    public function create(string $title)
+    {
+        /**
+         * @Annotation\RequestUri("lists")
+         */
+        return new class($title)
+        {
+            /**
+             * @var string
+             * @Annotation\QueryParameter()
+             */
+            private $title;
+
+            /**
+             *  constructor.
+             *
+             * @param string $title
+             */
+            public function __construct(string $title)
+            {
+                $this->title = $title;
+            }
+        };
+    }
 }
