@@ -3,8 +3,8 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\WunderListApi;
 
-use Makssiis\WunderList\ResponseEntity\File;
-use Makssiis\WunderList\ResponseEntity\Files;
+use Makssiis\WunderList\Entity\File;
+use Makssiis\WunderList\Entity\Files;
 
 /**
  * Class FileApi

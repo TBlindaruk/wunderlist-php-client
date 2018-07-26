@@ -3,8 +3,7 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\WunderListApi;
 
-use Makssiis\WunderList\RequestEntity\Avatar;
-use Makssiis\WunderList\ResponseEntity\AvatarImg;
+use Makssiis\WunderList\Entity\AvatarImg;
 
 /**
  * Class AvatarApi

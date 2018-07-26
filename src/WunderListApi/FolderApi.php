@@ -3,8 +3,8 @@ declare(strict_types = 1);
 
 namespace Makssiis\WunderList\WunderListApi;
 
-use Makssiis\WunderList\ResponseEntity\Folder;
-use Makssiis\WunderList\ResponseEntity\FolderRevision;
+use Makssiis\WunderList\Entity\Folder;
+use Makssiis\WunderList\Entity\FolderRevision;
 
 /**
  * Class FolderApi
