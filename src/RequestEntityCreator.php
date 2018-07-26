@@ -6,6 +6,7 @@ namespace Makssiis\WunderList;
 use Makssiis\WunderList\RequestEntityCreator\AvatarCreator;
 use Makssiis\WunderList\RequestEntityCreator\FileCreator;
 use Makssiis\WunderList\RequestEntityCreator\FolderCreator;
+use Makssiis\WunderList\RequestEntityCreator\ListCreator;
 use Makssiis\WunderList\RequestEntityCreator\PreviewCreator;
 
 /**
@@ -44,5 +45,13 @@ class RequestEntityCreator
     public function preview(): PreviewCreator
     {
         return new PreviewCreator();
+    }
+
+    /**
+     * @return ListCreator
+     */
+    public function list(): ListCreator
+    {
+        return new ListCreator();
     }
 }

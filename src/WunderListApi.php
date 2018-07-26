@@ -6,6 +6,7 @@ namespace Makssiis\WunderList;
 use Makssiis\WunderList\WunderListApi\AvatarApi;
 use Makssiis\WunderList\WunderListApi\FileApi;
 use Makssiis\WunderList\WunderListApi\FolderApi;
+use Makssiis\WunderList\WunderListApi\ListApi;
 use Makssiis\WunderList\WunderListApi\PreviewApi;
 
 /**
@@ -67,5 +68,13 @@ class WunderListApi
     public function folder(): FolderApi
     {
         return new FolderApi($this->entityManager, $this->requestEntityCreator);
+    }
+
+    /**
+     * @return ListApi
+     */
+    public function list(): ListApi
+    {
+        return new ListApi($this->entityManager, $this->requestEntityCreator);
     }
 }
