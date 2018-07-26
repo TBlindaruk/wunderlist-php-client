@@ -7,6 +7,7 @@ use Makssiis\WunderList\WunderListApi\AvatarApi;
 use Makssiis\WunderList\WunderListApi\FileApi;
 use Makssiis\WunderList\WunderListApi\FolderApi;
 use Makssiis\WunderList\WunderListApi\ListApi;
+use Makssiis\WunderList\WunderListApi\NoteApi;
 use Makssiis\WunderList\WunderListApi\PreviewApi;
 
 /**
@@ -76,5 +77,13 @@ class WunderListApi
     public function list(): ListApi
     {
         return new ListApi($this->entityManager, $this->requestEntityCreator);
+    }
+
+    /**
+     * @return NoteApi
+     */
+    public function note(): NoteApi
+    {
+        return new NoteApi($this->entityManager, $this->requestEntityCreator);
     }
 }
