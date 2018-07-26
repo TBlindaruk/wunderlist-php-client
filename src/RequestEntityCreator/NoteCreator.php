@@ -70,4 +70,34 @@ class NoteCreator
             }
         };
     }
+
+    /**
+     * @param int $noteId
+     *
+     * @return object
+     */
+    public function get(int $noteId)
+    {
+        /**
+         * @Annotation\RequestUri("notes/{note_id}")
+         */
+        return new class($noteId)
+        {
+            /**
+             * @var int
+             * @Annotation\UriParameter()
+             */
+            private $note_id;
+
+            /**
+             *  constructor.
+             *
+             * @param int $noteId
+             */
+            public function __construct(int $noteId)
+            {
+                $this->note_id = $noteId;
+            }
+        };
+    }
 }

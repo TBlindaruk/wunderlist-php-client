@@ -13,10 +13,14 @@ try {
 
 echo '----------------LIST OF NOTES FOR LIST -------------------';
 try {
-    var_dump($lists = $wunderListApi->note()->getAllForList(259807475));
+    var_dump($notes = $wunderListApi->note()->getAllForList(259807475));
 } catch (Throwable $throwable) {
     echo $throwable->getMessage();
 }
+
+echo '----------------GET A SPECIFIC NOTE -------------------';
+
+var_dump($wunderListApi->note()->get($notes[0]->getId()));
 
 echo 'success';
 
