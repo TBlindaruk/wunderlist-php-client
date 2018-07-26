@@ -12,7 +12,7 @@ use Makssiis\WunderList\Entity\ListEntity;
 class ListApi extends AbstractWunderlistApi
 {
     /**
-     * @return object
+     * @return object|ListEntity[]
      * @throws \ReflectionException
      */
     public function getAll()
@@ -20,5 +20,18 @@ class ListApi extends AbstractWunderlistApi
         $entity = $this->getRequestEntityCreator()->list()->getAll();
 
         return $this->getEntityManager()->get($entity, ListEntity::class . '[]');
+    }
+
+    /**
+     * @param int $listId
+     *
+     * @return object|ListEntity
+     * @throws \ReflectionException
+     */
+    public function get(int $listId)
+    {
+        $entity = $this->getRequestEntityCreator()->list()->get($listId);
+
+        return $this->getEntityManager()->get($entity, ListEntity::class);
     }
 }

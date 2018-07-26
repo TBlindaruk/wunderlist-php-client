@@ -23,4 +23,34 @@ class ListCreator
         {
         };
     }
+
+    /**
+     * @param int $listId
+     *
+     * @return object
+     */
+    public function get(int $listId)
+    {
+        /**
+         * @Annotation\RequestUri("lists/{list_id}")
+         */
+        return new class($listId)
+        {
+            /**
+             * @var int
+             * @Annotation\UriParameter()
+             */
+            private $list_id;
+
+            /**
+             *  constructor.
+             *
+             * @param int $listId
+             */
+            public function __construct(int $listId)
+            {
+                $this->list_id = $listId;
+            }
+        };
+    }
 }
