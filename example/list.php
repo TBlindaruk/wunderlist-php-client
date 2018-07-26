@@ -19,5 +19,11 @@ var_dump($wunderListApi->list()->get($lists[0]->getId()));
 
 echo '----------------CREATE A LIST ------------------------';
 
-var_dump($wunderListApi->list()->create('FIRST TRY'));
+var_dump($newList = $wunderListApi->list()->create('FIRST TRY'));
+
+
+echo '---------------UPDATE A LIST ------------------------';
+
+var_dump($wunderListApi->list()->update($newList->getId(), $newList->getRevision(),'ew'));
 echo 'success';
+

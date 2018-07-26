@@ -83,4 +83,45 @@ class ListCreator
             }
         };
     }
+
+    public function update(int $listId, int $revision, string $title = null)
+    {
+        /**
+         * @Annotation\RequestUri("lists/{list_id}")
+         */
+        return new class($listId, $revision, $title)
+        {
+            /**
+             * @var int
+             * @Annotation\UriParameter()
+             */
+            private $list_id;
+
+            /**
+             * @var int
+             * @Annotation\QueryParameter()
+             */
+            private $revision;
+
+            /**
+             * @var null|string
+             * @Annotation\QueryParameter()
+             */
+            private $title;
+
+            /**
+             *  constructor.
+             *
+             * @param int         $listId
+             * @param int         $revision
+             * @param string|null $title
+             */
+            public function __construct(int $listId, int $revision, string $title = null)
+            {
+                $this->list_id = $listId;
+                $this->revision = $revision;
+                $this->title = $title;
+            }
+        };
+    }
 }
