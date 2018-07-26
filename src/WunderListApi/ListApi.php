@@ -62,4 +62,18 @@ class ListApi extends AbstractWunderlistApi
 
         return $this->getEntityManager()->update($entity, ListEntity::class);
     }
+
+    /**
+     * @param int $listId
+     * @param int $revision
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public function delete(int $listId, int $revision): bool
+    {
+        $entity = $this->getRequestEntityCreator()->list()->delete($listId, $revision);
+
+        return $this->getEntityManager()->destroy($entity);
+    }
 }

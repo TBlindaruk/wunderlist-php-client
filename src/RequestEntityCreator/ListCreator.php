@@ -84,6 +84,13 @@ class ListCreator
         };
     }
 
+    /**
+     * @param int         $listId
+     * @param int         $revision
+     * @param string|null $title
+     *
+     * @return object
+     */
     public function update(int $listId, int $revision, string $title = null)
     {
         /**
@@ -121,6 +128,45 @@ class ListCreator
                 $this->list_id = $listId;
                 $this->revision = $revision;
                 $this->title = $title;
+            }
+        };
+    }
+
+    /**
+     * @param int $listId
+     * @param int $revision
+     *
+     * @return object
+     */
+    public function delete(int $listId, int $revision)
+    {
+        /**
+         * @Annotation\RequestUri("lists/{listId}")
+         */
+        return new class($listId, $revision)
+        {
+            /**
+             * @var int
+             * @Annotation\UriParameter()
+             */
+            private $listId;
+
+            /**
+             * @var int
+             * @Annotation\QueryParameter()
+             */
+            private $revision;
+
+            /**
+             *  constructor.
+             *
+             * @param int $listId
+             * @param int $revision
+             */
+            public function __construct(int $listId, int $revision)
+            {
+                $this->listId = $listId;
+                $this->revision = $revision;
             }
         };
     }
