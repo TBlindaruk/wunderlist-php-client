@@ -9,6 +9,7 @@ use Makssiis\WunderList\RequestEntityCreator\FolderCreator;
 use Makssiis\WunderList\RequestEntityCreator\ListCreator;
 use Makssiis\WunderList\RequestEntityCreator\NoteCreator;
 use Makssiis\WunderList\RequestEntityCreator\PreviewCreator;
+use Makssiis\WunderList\RequestEntityCreator\RootCreator;
 
 /**
  * Class RequestEntityCreator
@@ -62,5 +63,13 @@ class RequestEntityCreator
     public function note(): NoteCreator
     {
         return new NoteCreator();
+    }
+
+    /**
+     * @return RootCreator
+     */
+    public function root(): RootCreator
+    {
+        return new RootCreator();
     }
 }

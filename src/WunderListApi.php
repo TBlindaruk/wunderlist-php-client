@@ -9,6 +9,7 @@ use Makssiis\WunderList\WunderListApi\FolderApi;
 use Makssiis\WunderList\WunderListApi\ListApi;
 use Makssiis\WunderList\WunderListApi\NoteApi;
 use Makssiis\WunderList\WunderListApi\PreviewApi;
+use Makssiis\WunderList\WunderListApi\RootApi;
 
 /**
  * Class WunderListApi
@@ -85,5 +86,13 @@ class WunderListApi
     public function note(): NoteApi
     {
         return new NoteApi($this->entityManager, $this->requestEntityCreator);
+    }
+
+    /**
+     * @return RootApi
+     */
+    public function root(): RootApi
+    {
+        return new RootApi($this->entityManager, $this->requestEntityCreator);
     }
 }
